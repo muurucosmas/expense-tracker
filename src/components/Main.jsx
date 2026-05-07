@@ -10,8 +10,14 @@ function Main() {
   });
 
   const [expense, setExpense] = useState(()=>{
+    
+  try {
     const saved = localStorage.getItem("expenses");
-    return saved?JSON.parse(saved):[]});
+    return saved ? JSON.parse(saved) : [];
+  } catch (error) {
+    return [];
+  }
+});
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -46,6 +52,11 @@ function Main() {
       item.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  const deleteBtn = (id)=>{
+   setExpense(pre =>
+    pre.filter(item => item.id !== id)
+   )}
+  
   return (
     <div className="flex flex-row gap-10 p-4">
       {/* FORM */}
@@ -124,7 +135,7 @@ function Main() {
         </div>
 
         {/* ITEMS */}
-        {filteredExpenses.map(item => (
+        {filteredExpenses.map((item) => (
           <div
             key={item.id}
             className="flex gap-10 border-b py-2 justify-around  "
@@ -134,6 +145,9 @@ function Main() {
             <p className="w-1/5">{item.amount}</p>
             <p className="w-1/5">{item.category}</p>
             <p className="w-1/5">{item.date}</p>
+            <button className="bg-red-400 rounded-md p-3" onClick={() => 
+              deleteBtn(item.id)
+            }>Delete</button>
           </div>
         ))}
       </div>
