@@ -49,10 +49,10 @@ function Main() {
   return (
     <div className="flex flex-row gap-10 p-4">
       {/* FORM */}
-      <div className="flex flex-col border-2 border-black rounded-xl p-4 w-1/2">
+      <div className="flex flex-col border-2 border-black rounded-xl p-4 w-1/4">
         <h1 className="font-bold text-lg mb-3">Add Expense</h1>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 ">
           <input
             type="text"
             name="name"
@@ -111,29 +111,29 @@ function Main() {
           placeholder="Search  name ..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border p-2 rounded mb-4 w-full"
+          className="border p-2 rounded mb-4 w-1/4"
         />
 
         {/* HEADERS */}
-        <div className="flex gap-10 font-bold border-b pb-2 mb-2 justify-between">
-          <h2>Name</h2>
-          <h2>Description</h2>
-          <h2>Amount</h2>
-          <h2>Category</h2>
-          <h2>Date</h2>
+        <div className="flex gap-10 font-bold border-b pb-2 mb-2 justify-between ">
+          <h2 className="w-1/5">Name</h2>
+          <h2 className="w-1/5">Description</h2>
+          <h2 className="w-1/5">Amount</h2>
+          <h2 className="w-1/5">Category</h2>
+          <h2 className="w-1/5">Date</h2>
         </div>
 
         {/* ITEMS */}
         {filteredExpenses.map(item => (
           <div
             key={item.id}
-            className="flex gap-10 border-b py-2 justify-between"
+            className="flex gap-10 border-b py-2 justify-around  "
           >
-            <p>{item.name}</p>
-            <p>{item.description}</p>
-            <p>{item.amount}</p>
-            <p>{item.category}</p>
-            <p>{item.date}</p>
+            <p className="w-1/5">{item.name}</p>
+            <p className="w-1/5">{item.description}</p>
+            <p className="w-1/5">{item.amount}</p>
+            <p className="w-1/5">{item.category}</p>
+            <p className="w-1/5">{item.date}</p>
           </div>
         ))}
       </div>
